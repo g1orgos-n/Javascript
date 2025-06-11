@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ανάγνωση JSON</title>
+</head>
+<body>
+
+    <h1>Λίστα Προϊόντων</h1>
+    <ul id="productList"></ul>
+
+    <script>
+        const jsonData = `
+        [
+            {"name": "Laptop", "price": 1200, "category": "Electronics"},
+            {"name": "Smartphone", "price": 800, "category": "Electronics"},
+            {"name": "Καρέκλα", "price": 150, "category": "Έπιπλα"}
+        ]`;
+
+        const products = JSON.parse(jsonData);
+        const list = document.getElementById("productList");
+
+        products.forEach(product => {
+            const li = document.createElement("li");
+            li.textContent = `${product.name} - ${product.price}€ (${product.category})`;
+            list.appendChild(li);
+        });
+    </script>
+
+</body>
+</html>

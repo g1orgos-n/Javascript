@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Αναζήτηση Προϊόντων</title>
+</head>
+<body>
+
+    <h1>Αναζήτηση Προϊόντων</h1>
+    <input type="text" id="searchInput" placeholder="Αναζήτηση...">
+    <ul id="productList"></ul>
+
+    <script>
+        const jsonData = `
+        [
+            {"name": "Laptop", "price": 1200},
+            {"name": "Smartphone", "price": 800},
+            {"name": "Tablet", "price": 400}
+        ]`;
+
+        const products = JSON.parse(jsonData);
+        const list = document.getElementById("productList");
+        const searchInput = document.getElementById("searchInput");
+
+        function displayProducts(filter = "") {
+            list.innerHTML = "";
+            products
+                .filter(product => product.name.toLowerCase().includes(filter.toLowerCase()))
+                .forEach(product => {
+                    const li = document.createElement("li");
+                    li.textContent = `${product.name} - ${product.price}€`;
+                    list.appendChild(li);
+                });
+        }
+
+        searchInput.addEventListener("input", function() {
+            displayProducts(this.value);
+        });
+
+        displayProducts();
+    </script>
+
+</body>
+</html>

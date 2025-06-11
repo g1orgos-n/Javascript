@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Αλλαγή Εικόνας</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .image-container {
+            display: grid;
+            grid-template-columns: repeat(3, 200px); /* 3 στήλες */
+            grid-template-rows: repeat(3, 200px);    /* 3 σειρές */
+            gap: 10px; /* Απόσταση μεταξύ των εικόνων */
+            justify-content: center;
+            margin-top: 20px;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Πάτα το κουμπί για αλλαγή εικόνας</h1>
+
+    <div class="image-container">
+        <img class="image" src="https://picsum.photos/256" alt="Εικόνα">
+        <img class="image" src="https://picsum.photos/256" alt="Εικόνα">
+        <img class="image" src="https://picsum.photos/256" alt="Εικόνα">
+        <img class="image" src="https://picsum.photos/256" alt="Εικόνα">
+        <img class="image" src="https://picsum.photos/256" alt="Εικόνα">
+        <img class="image" src="https://picsum.photos/256" alt="Εικόνα">
+        <img class="image" src="https://picsum.photos/256" alt="Εικόνα">
+        <img class="image" src="https://picsum.photos/256" alt="Εικόνα">
+        <img class="image" src="https://picsum.photos/256" alt="Εικόνα">
+    </div>
+
+    <button id="changeImage">Αλλαγή Εικόνας</button>
+
+    <script>
+        const images = document.querySelectorAll('.image');
+        const button = document.getElementById("changeImage");
+
+        button.addEventListener("click", function() {
+            let id = Math.floor(Math.random() * 256); // Δημιουργία τυχαίου ID
+            const link = "https://picsum.photos/";
+            const newImage = link.concat(id); // Δημιουργία νέας εικόνας
+
+            // Ενημέρωση όλων των εικόνων με την ίδια νέα εικόνα
+            images.forEach(function(image) {
+                image.src = newImage;
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+

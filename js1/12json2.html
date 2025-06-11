@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Λίστα Χρηστών από API</title>
+</head>
+<body>
+
+    <h1>Χρήστες</h1>
+    <button id="loadUsers">Φόρτωση Χρηστών</button>
+    <ul id="userList"></ul>
+
+    <script>
+        document.getElementById("loadUsers").addEventListener("click", function() {
+            fetch("https://jsonplaceholder.typicode.com/users")
+                .then(response => response.json())
+                .then(users => {
+                    const list = document.getElementById("userList");
+                    list.innerHTML = "";
+                    users.forEach(user => {
+                        const li = document.createElement("li");
+                        li.textContent = `${user.name} - ${user.email}`;
+                        list.appendChild(li);
+                    });
+                })
+                .catch(error => console.error("Σφάλμα:", error));
+        });
+    </script>
+
+</body>
+</html>

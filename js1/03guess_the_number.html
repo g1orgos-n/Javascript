@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Μάντεψε τον Αριθμό</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Μάντεψε τον αριθμό (1-10)</h1>
+    <input type="number" id="guessInput" min="1" max="10">
+    <button id="checkGuess">Έλεγχος</button>
+    <p id="result"></p>
+
+    <script>
+        const randomNumber = Math.floor(Math.random() * 10) + 1;
+        const input = document.getElementById("guessInput");
+        const button = document.getElementById("checkGuess");
+        const result = document.getElementById("result");
+
+        button.addEventListener("click", function() {
+            const guess = parseInt(input.value);
+
+            if (guess === randomNumber) {
+                result.textContent = "Συγχαρητήρια! Το βρήκες!";
+                result.style.color = "green";
+            } else {
+                result.textContent = "Λάθος! Δοκίμασε ξανά.";
+                result.style.color = "red";
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Αποθήκευση στο localStorage</title>
+</head>
+<body>
+
+    <h1>Αποθήκευση Ονόματος</h1>
+    <input type="text" id="nameInput" placeholder="Γράψε το όνομά σου...">
+    <button id="saveButton">Αποθήκευση</button>
+    <button id="loadButton">Φόρτωση</button>
+    <p id="displayName"></p>
+
+    <script>
+        document.getElementById("saveButton").addEventListener("click", function() {
+            const name = document.getElementById("nameInput").value;
+            const userData = { name: name };
+            localStorage.setItem("user", JSON.stringify(userData));
+        });
+
+        document.getElementById("loadButton").addEventListener("click", function() {
+            const storedData = localStorage.getItem("user");
+            if (storedData) {
+                const user = JSON.parse(storedData);
+                document.getElementById("displayName").textContent = `Καλώς ήρθες, ${user.name}!`;
+            } else {
+                document.getElementById("displayName").textContent = "Δεν βρέθηκαν δεδομένα.";
+            }
+        });
+    </script>
+
+</body>
+</html>
